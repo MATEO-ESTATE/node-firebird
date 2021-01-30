@@ -24,6 +24,7 @@ declare module 'node-firebird' {
         query(query: string, params: any[], callback: QueryCallback): void;
         execute(query: string, params: any[], callback: QueryCallback): void;
         sequentially(query: string, params: any[], rowCallback: SequentialCallback, callback: SimpleCallback, asArray?: boolean): void;
+        attachEvent(callback: (err: any, evtMgr: any) => void): void;
     }
 
     export interface Transaction {
@@ -41,19 +42,19 @@ declare module 'node-firebird' {
         user?: string;
         password?: string;
         lowercase_keys?: boolean;
-        role?: string;           
-        pageSize?: number; 
+        role?: string;
+        pageSize?: number;
     }
 
     export interface ConnectionPool {
         get(callback: DatabaseCallback): void;
-        destroy(): void; 
+        destroy(): void;
     }
-    
-    export function attach(options: Options, callback: DatabaseCallback): void; 
+
+    export function attach(options: Options, callback: DatabaseCallback): void;
     export function escape(value: string): string;
-    export function create(options: Options, callback: DatabaseCallback): void; 
+    export function create(options: Options, callback: DatabaseCallback): void;
     export function attachOrCreate(options: Options, callback: DatabaseCallback): void;
-    export function pool(max: number,options: Options, callback: DatabaseCallback): ConnectionPool; 
+    export function pool(max: number,options: Options, callback: DatabaseCallback): ConnectionPool;
 
 }
